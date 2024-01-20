@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://atharvk429:mongo429@cluster0.zgrgpou.mongodb.net/todolistDB");
+mongoose.connect("mongodb+srv://atharvk429:atharvk429@cluster0.zgrgpou.mongodb.net/todolistDB");
 
 const itemsSchema = {
     name: String
@@ -148,10 +148,14 @@ app.post("/delete", function(req,res){
     }
 });
 
-app.post("/work", function(req,res){
-    let item = req.body.newItem;
-    workItems.push(item);
-    res.redirect("/work");
+// app.post("/work", function(req,res){
+//     let item = req.body.newItem;
+//     workItems.push(item);
+//     res.redirect("/work");
+// });
+
+app.post("/about", function(req,res){
+    res.render("about");
 });
 
 app.listen(3000, function(){
