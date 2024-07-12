@@ -4,6 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const _ = require("lodash");
+require('dotenv').config();
 // const date = require(__dirname + "/date.js");
 
 const app = express();
@@ -13,7 +14,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://atharvk429:atharvk429@cluster0.zgrgpou.mongodb.net/todolistDB");
+mongoose.connect(process.env.MONGO_URL);
 
 const itemsSchema = {
     name: String
@@ -158,6 +159,11 @@ app.post("/about", function(req,res){
     res.render("about");
 });
 
-app.listen(3000, function(){
-    console.log("Server is running on port 3000.");
+// app.listen(3000, function(){
+//     console.log("Server is running on port 3000.");
+// });
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
